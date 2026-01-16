@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TerraCraft Pro | 2D Песочница</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+    <!-- Экраны состояния -->
+    <div id="loading-screen" class="screen active">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cube"></i>
+                    <i class="fas fa-mountain"></i>
+                    <i class="fas fa-tree"></i>
+                </div>
+                <h1>TERRACRAFT</h1>
+                <p class="subtitle">2D Песочница</p>
+            </div>
+            
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progress-text">Загрузка ядра...</span>
+                    <span id="progress-percent">0%</span>
+                </div>
+            </div>
+            
+            <div class="loading-tips">
+                <div class="tip active">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Совет: Используйте ПКМ для установки блоков</span>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Совет: Нажмите E для открытия инвентаря</span>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Совет: W/A/SD для движения, Пробел для прыжка</span>
+                </div>
+            </div>
+            
+            <div class="loading-stats">
+                <div class="stat">
+                    <i class="fas fa-microchip"></i>
+                    <span id="stat-memory">0 MB</span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-clock"></i>
+                    <span id="stat-time">0.0s</span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-layer-group"></i>
+                    <span id="stat-assets">0/0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-menu" class="screen">
+        <div class="menu-container">
+            <div class="menu-header">
+                <div class="menu-logo">
+                    <div class="logo-animation">
+                        <div class="cube"><i class="fas fa-cube"></i></div>
+                        <div class="mountain"><i class="fas fa-mountain"></i></div>
+                        <div class="tree"><i class="fas fa-tree"></i></div>
+                    </div>
+                    <h1>TERRACRAFT</h1>
+                    <p class="version">v1.0.0</p>
+                </div>
+                
+                <div class="menu-subtitle">
+                    <p>Создавай. Исследуй. Выживай.</p>
+                </div>
+            </div>
+            
+            <div class="menu-content">
+                <div class="menu-buttons">
+                    <button id="btn-continue" class="menu-btn primary">
+                        <i class="fas fa-play-circle"></i>
+                        <span>Продолжить игру</span>
+                    </button>
+                    
+                    <button id="btn-new-game" class="menu-btn">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Новая игра</span>
+                    </button>
+                    
+                    <button id="btn-load-game" class="menu-btn">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Загрузить мир</span>
+                    </button>
+                    
+                    <button id="btn-settings" class="menu-btn">
+                        <i class="fas fa-cog"></i>
+                        <span>Настройки</span>
+                    </button>
+                    
+                    <button id="btn-mods" class="menu-btn">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <span>Моды</span>
+                    </button>
+                    
+                    <button id="btn-credits" class="menu-btn">
+                        <i class="fas fa-users"></i>
+                        <span>Разработчики</span>
+                    </button>
+                    
+                    <button id="btn-quit" class="menu-btn danger">
+                        <i class="fas fa-power-off"></i>
+                        <span>Выйти</span>
+                    </button>
+                </div>
+                
+                <div class="menu-sidebar">
+                    <div class="player-card">
+                        <div class="player-avatar">
+                            <i class="fas fa-user-astronaut"></i>
+                        </div>
+                        <div class="player-info">
+                            <h3>Игрок</h3>
+                            <div class="player-stats">
+                                <div class="stat">
+                                    <i class="fas fa-medal"></i>
+                                    <span>Уровень: <strong id="menu-level">1</strong></span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Время: <strong id="menu-playtime">0:00</strong></span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                    <span>Мир: <strong id="menu-world">Новый</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="world-preview">
+                        <h4><i class="fas fa-globe-europe"></i> Последний мир</h4>
+                        <div class="preview-container" id="world-preview">
+                            <!-- Preview будет сгенерирован JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="news-feed">
+                        <h4><i class="fas fa-newspaper"></i> Обновления</h4>
+                        <div class="news-item">
+                            <div class="news-date">Сегодня</div>
+                            <div class="news-title">Добавлена система крафта!</div>
+                            <div class="news-content">Теперь можно создавать инструменты и верстаки.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-footer">
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+                
+                <div class="copyright">
+                    <p>TerraCraft Pro © 2023 | Сделано с <i class="fas fa-heart"></i> для игроков</p>
+                    <p class="disclaimer">Эта игра является фанатским проектом и не связана с Terraria или Re-Logic.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-screen" class="screen">
+        <!-- Основной контейнер игры -->
+        <div id="game-container">
+            <canvas id="game-canvas"></canvas>
+            
+            <!-- Игровой интерфейс -->
+            <div id="game-hud">
+                <!-- Верхняя панель -->
+                <div class="hud-top">
+                    <div class="health-bar">
+                        <div class="bar-label">
+                            <i class="fas fa-heart"></i>
+                            <span>Здоровье</span>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar-bg"></div>
+                            <div class="bar-fill" id="health-bar"></div>
+                            <div class="bar-text" id="health-text">100/100</div>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-bar">
+                        <div class="bar-label">
+                            <i class="fas fa-star"></i>
+                            <span>Уровень <span id="level-text">1</span></span>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar-bg"></div>
+                            <div class="bar-fill" id="experience-bar"></div>
+                            <div class="bar-text" id="experience-text">0/100</div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-bar">
+                        <div class="bar-label">
+                            <i class="fas fa-bolt"></i>
+                            <span>Выносливость</span>
+                        </div>
+                        <div class="bar-container">
+                            <div class="bar-bg"></div>
+                            <div class="bar-fill" id="stamina-bar"></div>
+                            <div class="bar-text" id="stamina-text">100/100</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Центральная часть (прицел, подсказки) -->
+                <div class="hud-center">
+                    <div class="crosshair">
+                        <div class="crosshair-dot"></div>
+                        <div class="crosshair-lines">
+                            <div class="line horizontal"></div>
+                            <div class="line vertical"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="interaction-hint" id="interaction-hint">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <span>Нажмите ЛКМ чтобы разрушить</span>
+                    </div>
+                    
+                    <div class="block-info" id="block-info">
+                        <div class="block-preview" id="block-preview"></div>
+                        <div class="block-name" id="block-name">Воздух</div>
+                    </div>
+                </div>
+                
+                <!-- Нижняя панель -->
+                <div class="hud-bottom">
+                    <!-- Горячая панель -->
+                    <div class="hotbar-container">
+                        <div class="hotbar" id="hotbar">
+                            <!-- Слоты будут сгенерированы JavaScript -->
+                        </div>
+                        <div class="hotbar-label">
+                            <i class="fas fa-keyboard"></i>
+                            <span>1-9 для выбора, Колесико для прокрутки</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Быстрые действия -->
+                    <div class="quick-actions">
+                        <button class="action-btn" id="btn-inventory" title="Инвентарь (E)">
+                            <i class="fas fa-backpack"></i>
+                        </button>
+                        <button class="action-btn" id="btn-crafting" title="Крафт (C)">
+                            <i class="fas fa-hammer"></i>
+                        </button>
+                        <button class="action-btn" id="btn-map" title="Карта (M)">
+                            <i class="fas fa-map"></i>
+                        </button>
+                        <button class="action-btn" id="btn-chat" title="Чат (T)">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Статистика -->
+                    <div class="quick-stats">
+                        <div class="stat">
+                            <i class="fas fa-clock"></i>
+                            <span id="game-time">12:00</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="coordinates">0, 0</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-layer-group"></i>
+                            <span id="block-count">0</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-thermometer-half"></i>
+                            <span id="biome-name">Лес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Интерфейс инвентаря (скрыт по умолчанию) -->
+            <div id="inventory-ui" class="ui-panel hidden">
+                <div class="ui-header">
+                    <h2><i class="fas fa-backpack"></i> Инвентарь</h2>
+                    <button class="ui-close" id="close-inventory">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="ui-content">
+                    <div class="inventory-sections">
+                        <!-- Горячая панель в инвентаре -->
+                        <div class="inventory-hotbar">
+                            <h3>Быстрый доступ</h3>
+                            <div class="hotbar-slots" id="inventory-hotbar">
+                                <!-- Слоты будут сгенерированы -->
+                            </div>
+                        </div>
+                        
+                        <!-- Основной инвентарь -->
+                        <div class="inventory-main">
+                            <h3>Хранилище</h3>
+                            <div class="inventory-grid" id="inventory-grid">
+                                <!-- 27 слотов (9x3) -->
+                            </div>
+                        </div>
+                        
+                        <!-- Снаряжение -->
+                        <div class="inventory-equipment">
+                            <h3>Снаряжение</h3>
+                            <div class="equipment-slots">
+                                <div class="equipment-slot helmet" data-slot="helmet">
+                                    <div class="slot-icon"><i class="fas fa-hard-hat"></i></div>
+                                    <div class="slot-label">Шлем</div>
+                                </div>
+                                <div class="equipment-slot chestplate" data-slot="chestplate">
+                                    <div class="slot-icon"><i class="fas fa-vest"></i></div>
+                                    <div class="slot-label">Нагрудник</div>
+                                </div>
+                                <div class="equipment-slot leggings" data-slot="leggings">
+                                    <div class="slot-icon"><i class="fas fa-jeans"></i></div>
+                                    <div class="slot-label">Поножи</div>
+                                </div>
+                                <div class="equipment-slot boots" data-slot="boots">
+                                    <div class="slot-icon"><i class="fas fa-shoe-prints"></i></div>
+                                    <div class="slot-label">Ботинки</div>
+                                </div>
+                                <div class="equipment-slot hand" data-slot="hand">
+                                    <div class="slot-icon"><i class="fas fa-hand-paper"></i></div>
+                                    <div class="slot-label">Рука</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Информация о предмете -->
+                        <div class="item-info">
+                            <h3>Информация</h3>
+                            <div class="info-content" id="item-info">
+                                <div class="no-item">
+                                    <i class="fas fa-info-circle"></i>
+                                    <p>Выберите предмет для просмотра информации</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ui-footer">
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span>Защита: </span>
+                            <strong id="defense-value">0</strong>
+                        </div>
+                        <div class="stat">
+                            <span>Урон: </span>
+                            <strong id="damage-value">1</strong>
+                        </div>
+                        <div class="stat">
+                            <span>Скорость: </span>
+                            <strong id="speed-value">100%</strong>
+                        </div>
+                    </div>
+                    <button class="btn-sort" id="btn-sort-inventory">
+                        <i class="fas fa-sort-alpha-down"></i>
+                        Сортировать
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Интерфейс крафта -->
+            <div id="crafting-ui" class="ui-panel hidden">
+                <div class="ui-header">
+                    <h2><i class="fas fa-hammer"></i> Крафт</h2>
+                    <button class="ui-close" id="close-crafting">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="ui-content">
+                    <div class="crafting-sections">
+                        <!-- Категории рецептов -->
+                        <div class="crafting-categories">
+                            <h3>Категории</h3>
+                            <div class="category-list" id="crafting-categories">
+                                <button class="category-btn active" data-category="all">
+                                    <i class="fas fa-th"></i>
+                                    <span>Все</span>
+                                </button>
+                                <button class="category-btn" data-category="tools">
+                                    <i class="fas fa-tools"></i>
+                                    <span>Инструменты</span>
+                                </button>
+                                <button class="category-btn" data-category="weapons">
+                                    <i class="fas fa-sword"></i>
+                                    <span>Оружие</span>
+                                </button>
+                                <button class="category-btn" data-category="building">
+                                    <i class="fas fa-cube"></i>
+                                    <span>Строительство</span>
+                                </button>
+                                <button class="category-btn" data-category="decor">
+                                    <i class="fas fa-palette"></i>
+                                    <span>Декорации</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Сетка крафта -->
+                        <div class="crafting-grid">
+                            <h3>Рецепты</h3>
+                            <div class="recipes-container" id="recipes-container">
+                                <!-- Рецепты будут сгенерированы -->
+                            </div>
+                        </div>
+                        
+                        <!-- Детали рецепта -->
+                        <div class="recipe-details">
+                            <h3>Детали рецепта</h3>
+                            <div class="details-content" id="recipe-details">
+                                <div class="no-recipe">
+                                    <i class="fas fa-search"></i>
+                                    <p>Выберите рецепт для просмотра деталей</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ui-footer">
+                    <div class="crafting-stats">
+                        <div class="stat">
+                            <i class="fas fa-unlock"></i>
+                            <span>Доступно: </span>
+                            <strong id="recipes-unlocked">0</strong>
+                            <span>/</span>
+                            <strong id="recipes-total">0</strong>
+                        </div>
+                    </div>
+                    <button class="btn-craft" id="btn-craft-item" disabled>
+                        <i class="fas fa-hammer"></i>
+                        Создать
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Меню паузы -->
+            <div id="pause-menu" class="ui-panel hidden">
+                <div class="pause-content">
+                    <div class="pause-header">
+                        <h1><i class="fas fa-pause-circle"></i> ПАУЗА</h1>
+                        <p class="subtitle">Игра приостановлена</p>
+                    </div>
+                    
+                    <div class="pause-buttons">
+                        <button class="pause-btn" id="btn-resume">
+                            <i class="fas fa-play"></i>
+                            <span>Продолжить</span>
+                        </button>
+                        
+                        <button class="pause-btn" id="btn-pause-settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </button>
+                        
+                        <button class="pause-btn" id="btn-save-game">
+                            <i class="fas fa-save"></i>
+                            <span>Сохранить игру</span>
+                        </button>
+                        
+                        <button class="pause-btn" id="btn-load-pause">
+                            <i class="fas fa-folder-open"></i>
+                            <span>Загрузить игру</span>
+                        </button>
+                        
+                        <button class="pause-btn" id="btn-main-menu">
+                            <i class="fas fa-home"></i>
+                            <span>Главное меню</span>
+                        </button>
+                        
+                        <button class="pause-btn danger" id="btn-quit-game">
+                            <i class="fas fa-power-off"></i>
+                            <span>Выйти из игры</span>
+                        </button>
+                    </div>
+                    
+                    <div class="pause-stats">
+                        <div class="stat">
+                            <i class="fas fa-clock"></i>
+                            <span>Время игры: </span>
+                            <strong id="pause-time">0:00</strong>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-cube"></i>
+                            <span>Разрушено блоков: </span>
+                            <strong id="pause-blocks">0</strong>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-walking"></i>
+                            <span>Пройдено: </span>
+                            <strong id="pause-distance">0</strong>
+                            <span> м</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Панель настроек -->
+            <div id="settings-ui" class="ui-panel hidden">
+                <div class="ui-header">
+                    <h2><i class="fas fa-cog"></i> Настройки</h2>
+                    <button class="ui-close" id="close-settings">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="ui-content">
+                    <div class="settings-tabs">
+                        <button class="tab-btn active" data-tab="graphics">
+                            <i class="fas fa-tv"></i>
+                            <span>Графика</span>
+                        </button>
+                        <button class="tab-btn" data-tab="audio">
+                            <i class="fas fa-volume-up"></i>
+                            <span>Звук</span>
+                        </button>
+                        <button class="tab-btn" data-tab="controls">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Управление</span>
+                        </button>
+                        <button class="tab-btn" data-tab="gameplay">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Геймплей</span>
+                        </button>
+                        <button class="tab-btn" data-tab="interface">
+                            <i class="fas fa-desktop"></i>
+                            <span>Интерфейс</span>
+                        </button>
+                    </div>
+                    
+                    <div class="settings-content">
+                        <div class="tab-content active" id="tab-graphics">
+                            <!-- Настройки графики -->
+                            <div class="setting-group">
+                                <h3><i class="fas fa-sliders-h"></i> Качество графики</h3>
+                                
+                                <div class="setting">
+                                    <label for="setting-resolution">Разрешение</label>
+                                    <select id="setting-resolution">
+                                        <option value="720p">1280x720 (HD)</option>
+                                        <option value="1080p" selected>1920x1080 (Full HD)</option>
+                                        <option value="1440p">2560x1440 (2K)</option>
+                                        <option value="4k">3840x2160 (4K)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label for="setting-render-distance">Дальность прорисовки</label>
+                                    <input type="range" id="setting-render-distance" min="1" max="32" value="16">
+                                    <div class="range-value">
+                                        <span id="render-distance-value">16</span>
+                                        <span>чанков</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label for="setting-texture-quality">Качество текстур</label>
+                                    <select id="setting-texture-quality">
+                                        <option value="low">Низкое (16x16)</option>
+                                        <option value="medium" selected>Среднее (32x32)</option>
+                                        <option value="high">Высокое (64x64)</option>
+                                        <option value="ultra">Ультра (128x128)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label for="setting-particles">Эффекты частиц</label>
+                                    <select id="setting-particles">
+                                        <option value="off">Выкл</option>
+                                        <option value="low">Минимальные</option>
+                                        <option value="medium" selected>Средние</option>
+                                        <option value="high">Максимальные</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label for="setting-shadows">Тени</label>
+                                    <select id="setting-shadows">
+                                        <option value="off">Выкл</option>
+                                        <option value="low" selected>Низкие</option>
+                                        <option value="high">Высокие</option>
+                                        <option value="ultra">Ультра</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label for="setting-antialiasing">Сглаживание</label>
+                                    <select id="setting-antialiasing">
+                                        <option value="off">Выкл</option>
+                                        <option value="fxaa">FXAA (Быстрое)</option>
+                                        <option value="msaa2x" selected>MSAA 2x</option>
+                                        <option value="msaa4x">MSAA 4x</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="tab-audio">
+                            <!-- Настройки звука -->
+                            <div class="setting-group">
+                                <h3><i class="fas fa-volume-up"></i> Громкость</h3>
+                                
+                                <div class="setting">
+                                    <label for="setting-master-volume">Общая громкость</label>
+                                    <input type="range" id="setting-master-volume" min="0" max="100" value="70">
+                                    <div class="range-value">
+                                        <span id="master-volume-value">70</span>
+                                        <span>%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label for="setting-music-volume">Музыка</label>
+                                    <input type="range" id="setting-music-volume" min="0" max="100" value="50">
+                                    <div class="range-value">
+                                        <span id="music-volume-value">50</span>
+                                        <span>%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label for="setting-sfx-volume">Звуковые эффекты</label>
+                                    <input type="range" id="setting-sfx-volume" min="0" max="100" value="70">
+                                    <div class="range-value">
+                                        <span id="sfx-volume-value">70</span>
+                                        <span>%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="setting">
+                                    <label for="setting-ambient-volume">Амбиент</label>
+                                    <input type="range" id="setting-ambient-volume" min="0" max="100" value="40">
+                                    <div class="range-value">
+                                        <span id="ambient-volume-value">40</span>
+                                        <span>%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="tab-controls">
+                            <!-- Настройки управления -->
+                            <div class="setting-group">
+                                <h3><i class="fas fa-keyboard"></i> Настройки управления</h3>
+                                
+                                <div class="controls-grid">
+                                    <!-- Управление будет сгенерировано JavaScript -->
+                                </div>
+                                
+                                <div class="control-actions">
+                                    <button class="btn-reset" id="btn-reset-controls">
+                                        <i class="fas fa-undo"></i>
+                                        Сбросить настройки
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ui-footer">
+                    <button class="btn-apply" id="btn-apply-settings">
+                        <i class="fas fa-check"></i>
+                        Применить
+                    </button>
+                    <button class="btn-default" id="btn-default-settings">
+                        <i class="fas fa-history"></i>
+                        По умолчанию
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Сообщения и уведомления -->
+            <div id="notification-container">
+                <!-- Уведомления будут добавляться динамически -->
+            </div>
+            
+            <!-- Отладочная информация (только в режиме разработки) -->
+            <div id="debug-info" class="hidden">
+                <div class="debug-section">
+                    <h4>Производительность</h4>
+                    <div class="debug-stat">
+                        <span>FPS: </span>
+                        <strong id="debug-fps">60</strong>
+                    </div>
+                    <div class="debug-stat">
+                        <span>Frame Time: </span>
+                        <strong id="debug-frame-time">16.7</strong>
+                        <span>ms</span>
+                    </div>
+                    <div class="debug-stat">
+                        <span>Memory: </span>
+                        <strong id="debug-memory">0</strong>
+                        <span>MB</span>
+                    </div>
+                </div>
+                
+                <div class="debug-section">
+                    <h4>Игрок</h4>
+                    <div class="debug-stat">
+                        <span>Position: </span>
+                        <strong id="debug-position">0, 0</strong>
+                    </div>
+                    <div class="debug-stat">
+                        <span>Chunk: </span>
+                        <strong id="debug-chunk">0, 0</strong>
+                    </div>
+                    <div class="debug-stat">
+                        <span>Velocity: </span>
+                        <strong id="debug-velocity">0, 0</strong>
+                    </div>
+                </div>
+                
+                <div class="debug-section">
+                    <h4>Мир</h4>
+                    <div class="debug-stat">
+                        <span>Chunks Loaded: </span>
+                        <strong id="debug-chunks">0</strong>
+                    </div>
+                    <div class="debug-stat">
+                        <span>Blocks Rendered: </span>
+                        <strong id="debug-blocks">0</strong>
+                    </div>
+                    <div class="debug-stat">
+                        <span>Entities: </span>
+                        <strong id="debug-entities">0</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальные окна -->
+    <div id="modal-container">
+        <!-- Модальные окна будут добавляться динамически -->
+    </div>
+
+    <!-- Скрипты -->
+    <!-- Webpack добавит bundle.js автоматически -->
+</body>
+</html>

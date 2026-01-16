@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"],
+      "@engine/*": ["engine/*"],
+      "@world/*": ["world/*"],
+      "@entities/*": ["entities/*"],
+      "@ui/*": ["ui/*"],
+      "@systems/*": ["systems/*"],
+      "@utils/*": ["utils/*"],
+      "@assets/*": ["../assets/*"]
+    },
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "checkJs": true,
+    "strict": false,
+    "noImplicitAny": false
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "build"]
+}
