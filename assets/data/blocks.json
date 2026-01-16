@@ -1,0 +1,313 @@
+{
+  "blocks": [
+    {
+      "id": 0,
+      "name": "air",
+      "displayName": "Воздух",
+      "solid": false,
+      "transparent": true,
+      "lightLevel": 0,
+      "hardness": 0,
+      "texture": "air",
+      "color": "#00000000"
+    },
+    {
+      "id": 1,
+      "name": "grass",
+      "displayName": "Трава",
+      "solid": true,
+      "hardness": 0.6,
+      "toolType": "shovel",
+      "toolLevel": 0,
+      "texture": "grass",
+      "color": "#7CFC00",
+      "variants": 3,
+      "drops": 2,
+      "topTexture": "grass_top",
+      "sideTexture": "grass_side",
+      "bottomTexture": "dirt"
+    },
+    {
+      "id": 2,
+      "name": "dirt",
+      "displayName": "Земля",
+      "solid": true,
+      "hardness": 0.5,
+      "toolType": "shovel",
+      "toolLevel": 0,
+      "texture": "dirt",
+      "color": "#8B4513",
+      "variants": 2,
+      "drops": 2
+    },
+    {
+      "id": 3,
+      "name": "stone",
+      "displayName": "Камень",
+      "solid": true,
+      "hardness": 1.5,
+      "toolType": "pickaxe",
+      "toolLevel": 1,
+      "texture": "stone",
+      "color": "#808080",
+      "variants": 4,
+      "drops": 4
+    },
+    {
+      "id": 4,
+      "name": "wood",
+      "displayName": "Дерево",
+      "solid": true,
+      "hardness": 1.0,
+      "toolType": "axe",
+      "toolLevel": 0,
+      "texture": "wood",
+      "color": "#8B7355",
+      "variants": 2,
+      "drops": 4
+    },
+    {
+      "id": 5,
+      "name": "leaves",
+      "displayName": "Листья",
+      "solid": true,
+      "transparent": true,
+      "hardness": 0.2,
+      "texture": "leaves",
+      "color": "#228B22",
+      "variants": 1,
+      "drops": 6,
+      "dropChance": 0.05
+    },
+    {
+      "id": 6,
+      "name": "water",
+      "displayName": "Вода",
+      "solid": false,
+      "transparent": true,
+      "isFluid": true,
+      "fluidDensity": 1.0,
+      "viscosity": 0.8,
+      "texture": "water",
+      "color": "#1E90FF80",
+      "lightLevel": 0
+    },
+    {
+      "id": 7,
+      "name": "sand",
+      "displayName": "Песок",
+      "solid": true,
+      "hardness": 0.4,
+      "toolType": "shovel",
+      "toolLevel": 0,
+      "texture": "sand",
+      "color": "#F4E04D",
+      "variants": 2,
+      "drops": 7,
+      "gravityAffected": true
+    },
+    {
+      "id": 8,
+      "name": "coal_ore",
+      "displayName": "Угольная руда",
+      "solid": true,
+      "hardness": 2.0,
+      "toolType": "pickaxe",
+      "toolLevel": 1,
+      "texture": "coal_ore",
+      "color": "#333333",
+      "variants": 1,
+      "drops": {
+        "id": 9,
+        "count": 1
+      },
+      "lightLevel": 0.1
+    },
+    {
+      "id": 9,
+      "name": "iron_ore",
+      "displayName": "Железная руда",
+      "solid": true,
+      "hardness": 3.0,
+      "toolType": "pickaxe",
+      "toolLevel": 2,
+      "texture": "iron_ore",
+      "color": "#D8BFD8",
+      "variants": 1,
+      "drops": {
+        "id": 10,
+        "count": 1
+      }
+    },
+    {
+      "id": 10,
+      "name": "gold_ore",
+      "displayName": "Золотая руда",
+      "solid": true,
+      "hardness": 4.0,
+      "toolType": "pickaxe",
+      "toolLevel": 3,
+      "texture": "gold_ore",
+      "color": "#FFD700",
+      "variants": 1,
+      "drops": {
+        "id": 11,
+        "count": 1
+      }
+    },
+    {
+      "id": 11,
+      "name": "diamond_ore",
+      "displayName": "Алмазная руда",
+      "solid": true,
+      "hardness": 5.0,
+      "toolType": "pickaxe",
+      "toolLevel": 3,
+      "texture": "diamond_ore",
+      "color": "#00FFFF",
+      "variants": 1,
+      "drops": {
+        "id": 12,
+        "count": 1
+      },
+      "lightLevel": 0.3,
+      "emitsLight": true,
+      "lightColor": "#00FFFF"
+    },
+    {
+      "id": 12,
+      "name": "lava",
+      "displayName": "Лава",
+      "solid": false,
+      "isFluid": true,
+      "fluidDensity": 2.0,
+      "viscosity": 0.3,
+      "texture": "lava",
+      "color": "#FF4500",
+      "lightLevel": 1.0,
+      "emitsLight": true,
+      "lightColor": "#FF4500",
+      "damage": 10,
+      "damageInterval": 1.0
+    },
+    {
+      "id": 13,
+      "name": "glass",
+      "displayName": "Стекло",
+      "solid": true,
+      "transparent": true,
+      "hardness": 0.3,
+      "toolType": "pickaxe",
+      "toolLevel": 0,
+      "texture": "glass",
+      "color": "#87CEEB80",
+      "drops": 0
+    },
+    {
+      "id": 14,
+      "name": "bedrock",
+      "displayName": "Бедрок",
+      "solid": true,
+      "hardness": -1,
+      "texture": "bedrock",
+      "color": "#222222",
+      "unbreakable": true,
+      "lightLevel": 0
+    },
+    {
+      "id": 15,
+      "name": "crafting_table",
+      "displayName": "Верстак",
+      "solid": true,
+      "hardness": 1.0,
+      "toolType": "axe",
+      "toolLevel": 0,
+      "texture": "crafting_table",
+      "color": "#A0522D",
+      "drops": 15,
+      "workstation": true,
+      "workstationType": "crafting"
+    },
+    {
+      "id": 16,
+      "name": "furnace",
+      "displayName": "Печь",
+      "solid": true,
+      "hardness": 2.0,
+      "toolType": "pickaxe",
+      "toolLevel": 1,
+      "texture": "furnace",
+      "color": "#696969",
+      "drops": 16,
+      "workstation": true,
+      "workstationType": "furnace",
+      "lightLevel": 0.5,
+      "emitsLight": true,
+      "lightColor": "#FFA500"
+    },
+    {
+      "id": 17,
+      "name": "chest",
+      "displayName": "Сундук",
+      "solid": true,
+      "hardness": 1.0,
+      "toolType": "axe",
+      "toolLevel": 0,
+      "texture": "chest",
+      "color": "#8B4513",
+      "drops": 17,
+      "container": true,
+      "slots": 27
+    },
+    {
+      "id": 18,
+      "name": "torch",
+      "displayName": "Факел",
+      "solid": false,
+      "transparent": true,
+      "hardness": 0.1,
+      "texture": "torch",
+      "color": "#FFA500",
+      "drops": 18,
+      "lightLevel": 0.9,
+      "emitsLight": true,
+      "lightColor": "#FFA500",
+      "placeableOn": ["top"]
+    },
+    {
+      "id": 19,
+      "name": "planks",
+      "displayName": "Доски",
+      "solid": true,
+      "hardness": 0.8,
+      "toolType": "axe",
+      "toolLevel": 0,
+      "texture": "planks",
+      "color": "#DEB887",
+      "variants": 6,
+      "drops": 19
+    }
+  ],
+  
+  "categories": {
+    "natural": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14],
+    "ores": [8, 9, 10, 11],
+    "fluids": [6, 12],
+    "building": [13, 15, 16, 17, 19],
+    "decorative": [18],
+    "transparent": [0, 5, 6, 12, 13, 18]
+  },
+  
+  "properties": {
+    "maxLightLevel": 15,
+    "defaultHardness": 1.0,
+    "miningSpeedMultiplier": {
+      "hand": 0.3,
+      "wood": 0.5,
+      "stone": 0.7,
+      "iron": 0.9,
+      "diamond": 1.2,
+      "gold": 1.5
+    }
+  }
+}

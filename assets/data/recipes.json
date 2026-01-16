@@ -1,0 +1,431 @@
+{
+  "version": "1.0.0",
+  "recipes": [
+    {
+      "id": "planks",
+      "name": "Доски",
+      "category": "basic",
+      "unlockedByDefault": true,
+      "output": {
+        "id": 19,
+        "count": 4
+      },
+      "ingredients": [
+        {
+          "id": 4,
+          "count": 1
+        }
+      ],
+      "shape": null,
+      "shapeless": true
+    },
+    {
+      "id": "stick",
+      "name": "Палка",
+      "category": "basic",
+      "unlockedByDefault": true,
+      "output": {
+        "id": 20,
+        "count": 4
+      },
+      "ingredients": [
+        {
+          "id": 19,
+          "count": 2
+        }
+      ],
+      "shape": [
+        ["", "wood", ""],
+        ["", "wood", ""]
+      ],
+      "shapeless": false
+    },
+    {
+      "id": "wooden_pickaxe",
+      "name": "Деревянная кирка",
+      "category": "tools",
+      "unlockedByDefault": true,
+      "output": {
+        "id": 21,
+        "count": 1
+      },
+      "ingredients": [
+        {
+          "id": 19,
+          "count": 3
+        },
+        {
+          "id": 20,
+          "count": 2
+        }
+      ],
+      "shape": [
+        ["wood", "wood", "wood"],
+        ["", "stick", ""],
+        ["", "stick", ""]
+      ],
+      "shapeless": false,
+      "toolStats": {
+        "type": "pickaxe",
+        "tier": 0,
+        "durability": 59,
+        "efficiency": 2.0,
+        "damage": 2
+      }
+    },
+    {
+      "id": "wooden_axe",
+      "name": "Деревянный топор",
+      "category": "tools",
+      "unlockedByDefault": true,
+      "output": {
+        "id": 22,
+        "count": 1
+      },
+      "ingredients": [
+        {
+          "id": 19,
+          "count": 3
+        },
+        {
+          "id": 20,
+          "count": 2
+        }
+      ],
+      "shape": [
+        ["wood", "wood", ""],
+        ["wood", "stick", ""],
+        ["", "stick", ""]
+      ],
+      "shapeless": false,
+      "toolStats": {
+        "type": "axe",
+        "tier": 0,
+        "durability": 59,
+        "efficiency": 2.0,
+        "damage": 3
+      }
+    },
+    {
+      "id": "wooden_shovel",
+      "name": "Деревянная лопата",
+      "category": "tools",
+      "unlockedByDefault": true,
+      "output": {
+        "id": 23,
+        "count": 1
+      },
+      "ingredients": [
+        {
+          "id": 19,
+          "count": 1
+        },
+        {
+          "id": 20,
+          "count": 2
+        }
+      ],
+      "shape": [
+        ["", "wood", ""],
+        ["", "stick", ""],
+        ["", "stick", ""]
+      ],
+      "shapeless": false,
+      "toolStats": {
+        "type": "shovel",
+        "tier": 0,
+        "durability": 59,
+        "efficiency": 2.0,
+        "damage": 1
+      }
+    },
+    {
+      "id": "wooden_sword",
+      "name": "Деревянный меч",
+      "category": "weapons",
+      "unlockedByDefault": true,
+      "output": {
+        "id": 24,
+        "count": 1
+      },
+      "ingredients": [
+        {
+          "id": 19,
+          "count": 2
+        },
+        {
+          "id": 20,
+          "count": 1
+        }
+      ],
+      "shape": [
+        ["", "wood", ""],
+        ["", "wood", ""],
+        ["", "stick", ""]
+      ],
+      "shapeless": false,
+      "weaponStats": {
+        "damage": 4,
+        "speed": 1.6,
+        "durability": 59
+      }
+    },
+    {
+      "id": "crafting_table",
+      "name": "Верстак",
+      "category": "workstations",
+      "unlockedByDefault": true,
+      "output": {
+        "id": 15,
+        "count": 1
+      },
+      "ingredients": [
+        {
+          "id": 19,
+          "count": 4
+        }
+      ],
+      "shape": [
+        ["wood", "wood"],
+        ["wood", "wood"]
+      ],
+      "shapeless": false,
+      "workstation": "crafting"
+    },
+    {
+      "id": "furnace",
+      "name": "Печь",
+      "category": "workstations",
+      "unlockedByDefault": false,
+      "unlockRequirement": {
+        "type": "item",
+        "item": 8,
+        "count": 1
+      },
+      "output": {
+        "id": 16,
+        "count": 1
+      },
+      "ingredients": [
+        {
+          "id": 3,
+          "count": 8
+        }
+      ],
+      "shape": [
+        ["stone", "stone", "stone"],
+        ["stone", "", "stone"],
+        ["stone", "stone", "stone"]
+      ],
+      "shapeless": false,
+      "workstation": "furnace"
+    },
+    {
+      "id": "chest",
+      "name": "Сундук",
+      "category": "storage",
+      "unlockedByDefault": true,
+      "output": {
+        "id": 17,
+        "count": 1
+      },
+      "ingredients": [
+        {
+          "id": 19,
+          "count": 8
+        }
+      ],
+      "shape": [
+        ["wood", "wood", "wood"],
+        ["wood", "", "wood"],
+        ["wood", "wood", "wood"]
+      ],
+      "shapeless": false
+    },
+    {
+      "id": "torch",
+      "name": "Факел",
+      "category": "lighting",
+      "unlockedByDefault": true,
+      "output": {
+        "id": 18,
+        "count": 4
+      },
+      "ingredients": [
+        {
+          "id": 20,
+          "count": 1
+        },
+        {
+          "id": 25,
+          "count": 1
+        }
+      ],
+      "shape": [
+        ["coal"],
+        ["stick"]
+      ],
+      "shapeless": false
+    },
+    {
+      "id": "stone_pickaxe",
+      "name": "Каменная кирка",
+      "category": "tools",
+      "unlockedByDefault": false,
+      "unlockRequirement": {
+        "type": "workstation",
+        "workstation": "crafting_table"
+      },
+      "output": {
+        "id": 26,
+        "count": 1
+      },
+      "ingredients": [
+        {
+          "id": 3,
+          "count": 3
+        },
+        {
+          "id": 20,
+          "count": 2
+        }
+      ],
+      "shape": [
+        ["stone", "stone", "stone"],
+        ["", "stick", ""],
+        ["", "stick", ""]
+      ],
+      "shapeless": false,
+      "toolStats": {
+        "type": "pickaxe",
+        "tier": 1,
+        "durability": 131,
+        "efficiency": 4.0,
+        "damage": 3
+      }
+    }
+  ],
+  
+  "smeltingRecipes": [
+    {
+      "id": "iron_ingot",
+      "name": "Железный слиток",
+      "category": "smelting",
+      "input": {
+        "id": 10,
+        "count": 1
+      },
+      "output": {
+        "id": 27,
+        "count": 1
+      },
+      "fuelTime": 10.0,
+      "experience": 0.7,
+      "workstation": "furnace"
+    },
+    {
+      "id": "gold_ingot",
+      "name": "Золотой слиток",
+      "category": "smelting",
+      "input": {
+        "id": 11,
+        "count": 1
+      },
+      "output": {
+        "id": 28,
+        "count": 1
+      },
+      "fuelTime": 10.0,
+      "experience": 1.0,
+      "workstation": "furnace"
+    },
+    {
+      "id": "glass",
+      "name": "Стекло",
+      "category": "smelting",
+      "input": {
+        "id": 7,
+        "count": 1
+      },
+      "output": {
+        "id": 13,
+        "count": 1
+      },
+      "fuelTime": 5.0,
+      "experience": 0.1,
+      "workstation": "furnace"
+    },
+    {
+      "id": "cooked_beef",
+      "name": "Жареная говядина",
+      "category": "smelting",
+      "input": {
+        "id": 30,
+        "count": 1
+      },
+      "output": {
+        "id": 31,
+        "count": 1
+      },
+      "fuelTime": 10.0,
+      "experience": 0.35,
+      "workstation": "furnace"
+    }
+  ],
+  
+  "fuelItems": [
+    {
+      "id": 4,
+      "name": "Дерево",
+      "burnTime": 15.0
+    },
+    {
+      "id": 19,
+      "name": "Доски",
+      "burnTime": 15.0
+    },
+    {
+      "id": 25,
+      "name": "Уголь",
+      "burnTime": 80.0
+    },
+    {
+      "id": 32,
+      "name": "Угольный блок",
+      "burnTime": 800.0
+    }
+  ],
+  
+  "workstations": [
+    {
+      "id": "crafting_table",
+      "name": "Верстак",
+      "tier": 1,
+      "recipes": ["planks", "stick", "wooden_pickaxe", "wooden_axe", "wooden_shovel", "wooden_sword", "crafting_table", "chest", "torch"],
+      "fuelSlots": 0,
+      "inputSlots": 9,
+      "outputSlots": 1,
+      "texture": "crafting_table_gui"
+    },
+    {
+      "id": "furnace",
+      "name": "Печь",
+      "tier": 2,
+      "recipes": ["iron_ingot", "gold_ingot", "glass", "cooked_beef"],
+      "fuelSlots": 1,
+      "inputSlots": 1,
+      "outputSlots": 1,
+      "texture": "furnace_gui"
+    }
+  ],
+  
+  "categories": {
+    "basic": ["planks", "stick"],
+    "tools": ["wooden_pickaxe", "wooden_axe", "wooden_shovel", "stone_pickaxe"],
+    "weapons": ["wooden_sword"],
+    "workstations": ["crafting_table", "furnace"],
+    "storage": ["chest"],
+    "lighting": ["torch"],
+    "smelting": ["iron_ingot", "gold_ingot", "glass", "cooked_beef"]
+  }
+}
